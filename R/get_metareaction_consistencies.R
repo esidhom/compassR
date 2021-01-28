@@ -17,7 +17,8 @@ get_metareaction_consistencies <- function(reaction_consistencies, metareactions
         dplyr::select(-reaction_id) %>%
         dplyr::group_by(metareaction_id) %>%
         dplyr::summarize_all(mean) %>%
-        dplyr::ungroup() %>% remove_rownames %>%
+        dplyr::ungroup() %>% 
+        tibble::remove_rownames %>%
         tibble::column_to_rownames("metareaction_id") %>% 
         as.data.frame()
     metareaction_consistencies
